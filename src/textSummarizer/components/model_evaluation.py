@@ -33,20 +33,18 @@ class ModelEvaluation:
             zip(article_batches, target_batches), total=len(article_batches)):
             
             inputs = tokenizer(article_batch, max_length=1024,  truncation=True, 
-                            padding="max_length", return_tensors="pt")
+                            padding=True, return_tensors="pt")
             
             summaries = model.generate(input_ids=inputs["input_ids"].to(device),
                             attention_mask=inputs["attention_mask"].to(device), 
-                            length_penalty=0.8, num_beams=8, max_length=128)
+                            length_penalty=1.0, num_beams=4, max_length=64, min_length=10, early_stopping=True)
             ''' parameter for length penalty ensures that the model does not generate sequences that are too long. '''
             
             # Finally, we decode the generated texts, 
             # replace the  token, and add the decoded texts with the references to the metric.
             decoded_summaries = [tokenizer.decode(s, skip_special_tokens=True, 
                                     clean_up_tokenization_spaces=True) 
-                for s in summaries]      
-            
-            decoded_summaries = [d.replace("", " ") for d in decoded_summaries]
+                for s in summaries]
             
             
             metric.add_batch(predictions=decoded_summaries, references=target_batch)
@@ -70,7 +68,7 @@ class ModelEvaluation:
         rouge_metric = load('rouge')
 
         score = self.calculate_metric_on_test_ds(
-        dataset_samsum_pt['test'][0:10], rouge_metric, model_pegasus, tokenizer, batch_size = 2, column_text = 'dialogue', column_summary= 'summary'
+        dataset_samsum_pt['test'], rouge_metric, model_pegasus, tokenizer, batch_size = 2, column_text = 'dialogue', column_summary= 'summary'
             )
 
         rouge_dict = dict((rn, score[rn]) for rn in rouge_names )
