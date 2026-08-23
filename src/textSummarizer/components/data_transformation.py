@@ -15,7 +15,7 @@ class DataTransformation:
 
     
     def convert_examples_to_features(self,example_batch):
-        input_encodings = self.tokenizer(example_batch['dialogue'] , max_length = 1024, truncation = True )
+        input_encodings = self.tokenizer(text_target=example_batch['dialogue'] , max_length = 1024, truncation = True )
         
         target_encodings = self.tokenizer(example_batch['summary'], max_length = 128, truncation = True )
             
