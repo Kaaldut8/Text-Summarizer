@@ -1,5 +1,6 @@
 transformers
 sentencepiece
+evaluate
 datasets
 sacrebleu
 rouge_score
