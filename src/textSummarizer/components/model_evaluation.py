@@ -37,7 +37,7 @@ class ModelEvaluation:
             
             summaries = model.generate(input_ids=inputs["input_ids"].to(device),
                             attention_mask=inputs["attention_mask"].to(device), 
-                            length_penalty=1.0, num_beams=5, max_length=64, early_stopping=True)
+                            length_penalty=1.0, num_beams=5, max_length=64, min_length=10, early_stopping=True)
             ''' parameter for length penalty ensures that the model does not generate sequences that are too long. '''
             
             # Finally, we decode the generated texts, 
