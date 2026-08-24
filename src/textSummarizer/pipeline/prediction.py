@@ -1,5 +1,6 @@
 from textSummarizer.config.configuration import ConfigurationManager
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+from transformers import pipeline
 
 
 
@@ -13,7 +14,7 @@ class PredictionPipeline:
         tokenizer = AutoTokenizer.from_pretrained(self.config.tokenizer_path)
         gen_kwargs = {
             "length_penalty": 1.0,
-            "num_beams": 4,
+            "num_beams": 5,
             "max_length": 64,
             "min_length": 10,
             "early_stopping": True
