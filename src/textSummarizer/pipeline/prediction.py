@@ -13,9 +13,9 @@ class PredictionPipeline:
     def predict(self,text):
         tokenizer = AutoTokenizer.from_pretrained(self.config.tokenizer_path)
         gen_kwargs = {
-            "length_penalty": 1.0,
-            "num_beams": 5,
-            "max_length": 64,
+            "length_penalty": 0.8,
+            "num_beams": 8,
+            "max_length": 128,
             "min_length": 10,
             "early_stopping": True
         }
