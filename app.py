@@ -21,7 +21,7 @@ async def index():
 @app.get("/train")
 async def training():
     try:
-        subprocess.run(["python main.py"])
+        subprocess.run(["python", "main.py"])
         return Response("Training successful !!")
     except Exception as e:
         return Response(f"Error Occured! {e}")
