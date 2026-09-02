@@ -18,7 +18,7 @@
 Clone the repository
 
 ```bash
-https://github.com/entbappy/End-to-end-Text-Summarization
+https://github.com/Kaaldut8/End-to-end-Text-Summarization
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
@@ -90,7 +90,7 @@ Email: raghavmaheshwari@gmail.com
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/text-s
+    - Save the URI: 119176569153.dkr.ecr.ap-south-1.amazonaws.com/text-s
 
 	
 ## 4. Create EC2 machine (Ubuntu) 
